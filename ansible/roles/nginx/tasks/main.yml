@@ -1,18 +1,9 @@
 ---
-- name: Copy Ngixn Repo
-  command: rpm -Uvh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
-
 - name: Install Nginx
-  yum: name=nginx state=latest
+  yum: name=http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm state=present
 
 - name: Add nginx to chkconfig
   command: systemctl start nginx.service
-
-#- name: Add permissions
-#  command: chmod -R 777 /srv/website
-
-#- name: Add permissions
-#  command: chown -R nginx /home
 
 - name: Copy nginx default configuration
   template: src=default.conf.j2 dest=/etc/nginx/conf.d/default.conf

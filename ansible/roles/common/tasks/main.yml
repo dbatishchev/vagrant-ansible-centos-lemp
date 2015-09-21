@@ -5,8 +5,8 @@
 - name: Install nano
   yum: name=nano state=present
 
-- name: selinux
-  command: setenforce Permissive
-
-- name: another selinux
-  selinux: state=disabled
+#- name: selinux
+#  command: setenforce Permissive
+#
+#- name: another selinux
+#  selinux: state=disabled

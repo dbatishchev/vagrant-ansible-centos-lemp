@@ -1,0 +1,23 @@
+---
+- name: Install php-fpm and deps
+  yum: name={{ item }} state=latest enablerepo=remi,remi-php55
+  with_items:
+    - php-fpm
+    - php-common
+    - php-devel
+    - php-cli
+    - php-pdo
+    - php-gd
+    - php-xml
+    - php-mbstring
+    - php-mysql
+
+- name: Copy www.conf file
+  template: src=www.conf dest=/etc/php-fpm.d/www.conf
+  notify: restart php-fpm
+
+- name: Start php
+  command: systemctl start php-fpm
+
+- name: Add php to services
+  command: systemctl enable php-fpm.service

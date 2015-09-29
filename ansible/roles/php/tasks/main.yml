@@ -12,12 +12,12 @@
     - php-mbstring
     - php-mysql
 
+- name: Add php to services
+  service: name=php-fpm enabled=yes
+
+- name: Start php
+  service: name=php-fpm state=started
+
 - name: Copy www.conf file
   template: src=www.conf dest=/etc/php-fpm.d/www.conf
   notify: restart php-fpm
-
-- name: Start php
-  command: systemctl start php-fpm
-
-- name: Add php to services
-  command: systemctl enable php-fpm.service

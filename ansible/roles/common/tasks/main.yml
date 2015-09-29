@@ -4,3 +4,6 @@
 
 - name: Install nano
   yum: name=nano state=present
+
+- name: Disable selinux
+  selinux: state=disabled
